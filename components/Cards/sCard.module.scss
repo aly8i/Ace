@@ -1,0 +1,71 @@
+
+  .card {
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    color: black;
+    position: relative;
+    height: 100px;
+    width: 67px;
+    cursor: pointer;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1)1s;
+  }
+
+  .card:hover{
+    z-index:2;
+    margin-top: -10px;
+  }
+  
+  @-webkit-keyframes shimmer {
+    0% {
+      background-position: -4rem top;
+      /*50px*/
+    }
+    70% {
+      background-position: 12.5rem top;
+      /*200px*/
+    }
+    100% {
+      background-position: 12.5rem top;
+      /*200px*/
+    }
+  }
+  .l {
+    align-self: flex-start;
+    position: absolute;
+    top: 2.6px;
+    left: 5.3px;
+    font-size: 6px;
+  }
+  
+  .l p {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    text-align: center;
+  }
+  
+  .r {
+    -webkit-transform: rotateX(180deg);
+    align-self: flex-end;
+    position: absolute;
+    bottom: 2.6px;
+    right: 5.3px;
+    font-size: 6px;
+  }
+  
+  .r p {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    text-align: center;
+  }
+  
+  .row2 p {
+    padding: 0;
+    margin: 0;
+    font-size: 50px;
+  }

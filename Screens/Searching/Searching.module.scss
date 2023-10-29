@@ -1,0 +1,57 @@
+.wrapper1,.wrapper2,.wrapper3,.wrapper4{
+    position:absolute;
+    top:300px;
+    scale:0.5;
+}
+.main{
+    height: 100vh;
+    width: 100%;
+}
+
+.wrapper1{
+    animation: moveRight 1s 0s alternate infinite;  
+}
+.wrapper2{
+    animation: moveUp 1s 0s alternate infinite;
+}
+.wrapper3{
+    animation: moveLeft 1s 0s alternate infinite;
+}
+.wrapper4{
+    animation: moveDown 1s 0s alternate infinite;
+}
+
+
+
+@keyframes moveRight {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(200px);
+    }
+  }
+  @keyframes moveUp {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-200px);
+    }
+  }
+@keyframes moveLeft {
+    0% {
+        transform: translateX(0px);
+    }
+    100% {
+        transform: translateX(-200px);
+    }
+}
+@keyframes moveDown {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(200px);
+    }
+}

@@ -1,0 +1,234 @@
+.wrapper{
+    width: 100%;
+    height:calc(100vh - 58px);
+    position: relative;
+}
+.topplayer .imgContainer {
+    position: absolute;
+    top:10px;
+}
+
+.bottomplayer .imgContainer {
+    position: absolute;
+    bottom:10px;
+}
+
+.rightplayer .imgContainer {
+    position: absolute;
+    right:10px;
+}
+.leftplayer .imgContainer {
+    position: absolute;
+    left:10px;
+}
+.img{
+    border-radius: 50%;
+}
+.topplayer{
+    position: absolute;
+    top: calc(50% - 400px - 10px);
+    height: 200px;
+    margin-left:200px;
+    width: calc(100% - 400px);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+}
+
+.currentScore, .totalScore{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    backdrop-filter: blur(10px);
+}
+
+.topplayer .currentScore{
+    top:15px;
+    margin-left: -150px;
+    background: rgba(216, 7, 7, 0.124);
+}
+
+.topplayer .totalScore{
+    top:15px;
+    margin-left: 150px;
+    background: rgba(7, 104, 216, 0.124);
+}
+
+.bottomplayer .currentScore{
+    bottom:15px;
+    margin-left: -150px;
+    background: rgba(216, 7, 7, 0.124);
+}
+
+.bottomplayer .totalScore{
+    bottom:15px;
+    margin-left: 150px;
+    background: rgba(7, 104, 216, 0.124);
+}
+
+.leftplayer .currentScore{
+    margin-top: calc(-3px - 150px);
+    left:15px;
+    background: rgba(216, 7, 7, 0.124);
+}
+
+.leftplayer .totalScore{
+    margin-top: calc(-3px + 150px);
+    left:15px;
+    background: rgba(7, 104, 216, 0.124);
+}
+
+
+.rightplayer .currentScore{
+    margin-top: calc(-3px - 150px);
+    right:15px;
+    background: rgba(216, 7, 7, 0.124);
+}
+
+.rightplayer .totalScore{
+    margin-top: calc(-3px + 150px);
+    right:15px;
+    background: rgba(7, 104, 216, 0.124);
+}
+
+.currentScore p,.totalScore p{
+    text-align: center;
+    position: relative;
+    margin-top:13px;
+}
+
+.bottomplayer{
+    position: absolute;
+    bottom: calc(50% - 400px - 10px);
+    height: 200px;
+    margin-left:200px;
+    width: calc(100% - 400px);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    
+}
+.rightplayer{
+    position: absolute;
+    right: calc(50% - 400px - 10px);
+    height: 100%;
+    width: 200px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.leftplayer{
+    position: absolute;
+    left:calc(50% - 400px - 10px);
+    height: 100%;
+    width: 200px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.table{
+    position:absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    background: rgba(255,255,255,.05);
+    box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+}
+.topplayer .cardsContainer{
+    position:absolute;
+    width: 400px;
+    height: 100px;
+    max-height: 100px;
+    display: flex;
+    overflow:hidden;
+    flex-wrap: wrap;
+    padding-left: 4px;
+    bottom: 0;
+}
+
+.topplayer .cardsContainer .card,.bottomplayer .cardsContainer .card{
+    // margin-left: -40px;
+    transition: all 0.5s ease;
+}
+.table .bottom{
+    position: absolute;
+    bottom: 30px;
+    right:calc(200px - 33.5px );
+}
+
+.table .top{
+    position: absolute;
+    top: 30px;
+    right:calc(200px - 33.5px );
+}
+.table .left{
+    position: absolute;
+    left: 50px;
+    top:calc(200px - 50px );
+    rotate: 90deg;
+}
+.table .right{
+    position: absolute;
+    right: 50px;
+    top:calc(200px - 50px );
+    rotate: 90deg;
+}
+
+
+
+.topplayer .cardsContainer .card:first-child, .bottomplayer .cardsContainer .card:first-child{
+    margin-left: 0px !important;
+}
+
+.bottomplayer .cardsContainer{
+    position:absolute;
+    width: 400px;
+    height: 100px;
+    max-height: 100px;
+    top:0;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 4px;
+}
+
+.rightplayer .cardsContainer{
+    position:absolute;
+    width: 100px;
+    height: 400px;
+    left:0;
+    padding-top: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 4px;
+    
+}
+
+.leftplayer .cardsContainer{
+    position:absolute;
+    width: 100px;
+    height: 400px;
+    right:0;
+    display: flex;
+    flex-direction: column;
+    overflow:hidden;
+    flex-wrap: wrap;
+    padding-top: 4px;
+}
+
+.leftplayer .cardsContainer .card, .rightplayer .cardsContainer .card{
+    margin-top: -40px;
+}
+
+.leftplayer .cardsContainer .card:first-child, .rightplayer .cardsContainer .card:first-child{
+    margin-top: 0px;
+}
