@@ -4,7 +4,7 @@ import { useEffect,useContext, useState } from 'react'
 import RandomCard from '../components/Cards/RandomCard'
 import { UserContext } from '../context/UserContext'
 import Searching from '../Screens/Searching/Searching';
-import Play from '../Screens/Play/play'
+import Play from '../Screens/Play/Play'
 import Game from '../Screens/Game/Game';
 import changeStatus from '../functions/changeStatus';
 import handleStart from '../functions/handleStart';

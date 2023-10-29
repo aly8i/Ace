@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect,useContext } from 'react';
 import { useSession } from "next-auth/react";
 import LockOpenIcon from '@mui/icons-material/LockOpen';
-import Profile from '../profile/Profile';
+import Profile from '../Profile/Profile';
 import Signin from '../Signin/Signin';
 import { UserContext } from '../../context/UserContext'
 
