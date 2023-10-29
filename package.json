@@ -1,0 +1,31 @@
+{
+  "name": "aceshuffle",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.13",
+    "@mui/material": "^5.14.13",
+    "axios": "^1.5.1",
+    "cookies-next": "^4.0.0",
+    "firebase": "^10.4.0",
+    "next": "13.5.4",
+    "next-auth": "^4.23.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-reveal": "^1.2.2",
+    "react-toastify": "^9.1.3",
+    "sass": "^1.69.3"
+  },
+  "devDependencies": {
+    "eslint": "8.51.0",
+    "eslint-config-next": "13.5.4"
+  }
+}
