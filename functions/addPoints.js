@@ -14,8 +14,11 @@ const addPoints = async (highestIndex, points, tableID, shuffle) => {
     const updatedUsersData = usersData.map((userData, index) => {
       const updatedDeck = userData.deck.filter(card => !card.played);
       if (index === highestIndex) {
-        var updatedPoint = userData.points + points
-        return { ...userData, points:updatedPoint,deck:updatedDeck};
+        var updatedPoints = userData.points + points
+        console.log("up"+updatedPoints)
+        console.log("prev"+userData.points)
+        console.log("new"+points)
+        return { ...userData, points:updatedPoints,deck:updatedDeck};
       }
       return { ...userData, deck:updatedDeck };
     });

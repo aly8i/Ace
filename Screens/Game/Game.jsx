@@ -11,22 +11,11 @@ import addPoints from '../../functions/addPoints';
 const Game = () => {
   const { table,id } = useContext(UserContext);
   const [sortedCards,setSortedCards] = useState([])
-  const [bottomMargin,setBottomMargin] = useState('-40px')
-  const [bottomPadding,setBottomPadding] = useState('0px')
   const [playedCards,setPlayedCards] = useState([])
-
-  useEffect(()=>{
-    const sorted = table?.usersData[table?.users?.indexOf(id)]?.deck
-    .filter((x)=>x?.played!==true)
-    .sort((a, b) => {
-      if (a.type === b.type) {
-        return a.name - b.name;
-      }
-      return a.type - b.type;
-    });
-    setSortedCards(sorted)
-  },[table?.usersData[table?.users?.indexOf(id)]?.deck])
-  
+  const bm = ['400px','35px','161px','95px','41px','14px','-2.1px','-13px','-20.6px','-26.4px','-30.9px','-34.5px','-37.5px','-40px']
+  const bp = ['0px','161px','75px','0px','0px','0px','0px','0px','0px','0px','0px','0px','0px','0px']
+  const lm = ['-55px','-55px','-55px','-55px','-55px','-55px','-55px','-55px','-55px','-55px','-55px','-55px','-55px','-55px']
+  const lp = ['14px','14px','14px','14px','14px','14px','14px','14px','14px','14px','14px','14px','14px','14px']
 
   const returnIndex = (position='current') =>{
     var index = table?.users?.indexOf(id)
@@ -42,6 +31,40 @@ const Game = () => {
     }
     return index
   }
+
+  const playCard = async(i) => {
+    if(table?.turn!==returnIndex())
+      return
+    if(table?.type!=0){
+      const typeNum = sortedCards.filter(item => item.type==table?.type).length;
+      if(sortedCards[i].type!=table?.type&&typeNum>0)
+        return
+    }
+    const playedNum = playedCards.filter(item=>item).length
+    await PlayCard(sortedCards[i],returnIndex(),id,table?.id,playedNum)
+  }
+
+  console.log("playerID" +id)
+  console.log("first User" + table?.users[0]?.id)
+  console.log("played cards num:" + playedCards.length)
+  console.log("playerIndex:"+returnIndex())
+  console.log("table turn:"+table?.turn)
+  console.log("card type:"+table?.type)
+
+  useEffect(()=>{
+    const sorted = table?.usersData[table?.users?.indexOf(id)]?.deck
+    .filter((x)=>x?.played!==true)
+    .sort((a, b) => {
+      if (a.type === b.type) {
+        return a.name - b.name;
+      }
+      return a.type - b.type;
+    });
+    setSortedCards(sorted)
+  },[table?.usersData[table?.users?.indexOf(id)]?.deck])
+  
+
+
 
   useEffect(() => {
     const fn = async() => {
@@ -68,7 +91,6 @@ const Game = () => {
     if(playedBottom)
       temp[bottomIndex] = playedBottom;
 
-    setPlayedCards(temp)
     const playedCardsNum = temp.filter(item => item).length;
     if (playedCardsNum > 3 ) {
       if(id == table?.users[0]){
@@ -76,12 +98,12 @@ const Game = () => {
         var highest = 0;
         var highestIndex = 0;
         var shuffle = false;
-        playedCards.forEach((card,i) => {
+        temp.forEach((card,i) => {
           if (card) {
             if(card?.points==13)
               shuffle=true;
             points += card?.points
-            if(card?.name>highest){
+            if(card?.name>highest&&card?.type==table?.type){
               highest = card?.name;
               highestIndex = i;
             }
@@ -90,75 +112,14 @@ const Game = () => {
         await addPoints(highestIndex,points,table?.id,shuffle)
       }
       setPlayedCards([]);
-    }    
+    }else{
+      setPlayedCards(temp)
+    }
   }
   fn();
 }, [table]);
-console.log("playerID" +id)
-console.log("first User" + table?.users[0]?.id)
-console.log("played cards num:" + playedCards.length)
-console.log("playerIndex:"+returnIndex())
-console.log("table turn:"+table?.turn)
-console.log("card type:"+table?.type)
-  useEffect(()=>{
-    switch (sortedCards?.length) {
-      case 13:
-        setBottomMargin('-40px')
-        break;
-      case 12:
-        setBottomMargin('-37.5px')
-        break;
-      case 11:
-        setBottomMargin('-34.5px')
-        break;
-      case 10:
-        setBottomMargin('-30.9px')
-        break;
-      case 9:
-        setBottomMargin('-26.4px')
-        break;
-      case 8:
-        setBottomMargin('-20.6px')
-        break;
-      case 7:
-        setBottomMargin('-13px')
-        break;
-      case 6:
-        setBottomMargin('-2.1px')
-        break;
-      case 5:
-        setBottomMargin('14px')
-        break;
-      case 4:
-        setBottomMargin('41px')
-        break;
-      case 3:
-        setBottomMargin('95px')
-        break;
-      case 2:
-        setBottomMargin('35px')
-        setBottomPadding('75px');
-        break;
-      case 1:
-        setBottomMargin('400px')
-        setBottomPadding('161px');
-      default:
-        setBottomMargin('-500px')
-        break;
-    }
-  },[sortedCards?.length])
+ 
 
-  const playCard = async(i) => {
-    if(table?.turn!==returnIndex())
-      return
-    if(table?.type!=0){
-      const typeNum = sortedCards.filter(item => item.type==table?.type).length;
-      if(sortedCards[i].type!=table?.type&&typeNum>0)
-        return
-    }
-    const playedNum = playedCards.filter(item=>item).length
-    await PlayCard(sortedCards[i],returnIndex(),id,table?.id,playedNum)
-  }
 
   return (
     <div className={styles.wrapper}>
@@ -209,8 +170,8 @@ console.log("card type:"+table?.type)
           <p>{table?.usersData[returnIndex('left')]?.score}</p>
         </div>
         <div className={styles.cardsContainer}>
-          {table?.usersData[returnIndex('left')]?.deck?.map((card, i) => (
-            <div key={i} className={styles.card} >
+          {table?.usersData[returnIndex('left')]?.deck?.filter((card)=>card?.played!=true).map((card, i, cards) => (
+            <div key={i} className={styles.card} style={{marginTop: lm[cards?.length], paddingTop: lp[cards?.length]}}>
               <BackCard flip={true} />
             </div>
           ))}
@@ -228,7 +189,7 @@ console.log("card type:"+table?.type)
         </div>
         <div className={styles.cardsContainer}>
           {sortedCards?.map((card,i)=>(
-            <div className={styles.card} key={i} onClick={()=>playCard(i)} style={{marginLeft: bottomMargin, paddingLeft: bottomPadding}}>
+            <div className={styles.card} key={i} onClick={()=>playCard(i)} style={{marginLeft: bm[sortedCards?.length], paddingLeft: bp[sortedCards?.length] }}>
               <Card name={card.name} type={card.type} />
             </div>
           ))}
