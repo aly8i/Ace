@@ -24,7 +24,8 @@ const handleStart = async (bet, id) => {
                 if (count < 4) {
                     const userId = querySnapshot.docs[i].id;
                     const userRef = doc(usersRef, userId);
-                    await updateDoc(userRef, { status: 'game' });
+                    const balance = querySnapshot.docs[i].data().balance - bet
+                    await updateDoc(userRef, { status: 'game', balance });
                     users.push(userId);
                     images.push(querySnapshot.docs[i].data().image)
                     count++;

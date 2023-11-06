@@ -4,7 +4,6 @@ import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import logo2 from "../../public/aceee.png"
 import Image from 'next/image';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useRouter } from 'next/router';
 import { useState, useEffect,useContext } from 'react';
 import { useSession } from "next-auth/react";
 import LockOpenIcon from '@mui/icons-material/LockOpen';
@@ -14,31 +13,21 @@ import { UserContext } from '../../context/UserContext'
 
 const Navbar = () => {
     const { data,status } = useSession();
-    const router= useRouter();
-    const [showMenu,setShowMenu] = useState("false");
-    const [showProfile,setShowProfile] = useState("false")
-    const [showLogin,setShowLogin] = useState("false")
+    const [topBarState,setTopBarState] = useState('none')
     const { view,setView } = useContext(UserContext);
 
-    const toggleMenu = ()=>{
-        if(showMenu=="true"){
-            setShowMenu("false");
+    const toggleSignin = ()=>{
+        if(topBarState=="none"){
+            setTopBarState("signin");
         }else{
-            setShowMenu("true")
-        }
-    }
-    const toggleLogin = ()=>{
-        if(showLogin=="true"){
-            setShowLogin("false");
-        }else{
-            setShowLogin("true")
+            setTopBarState("none");
         }
     }
     const toggleProfile = ()=>{
-        if(showProfile=="true"){
-            setShowProfile("false");
+        if(topBarState=="none"){
+            setTopBarState("profile");
         }else{
-            setShowProfile("true")
+            setTopBarState("none");
         }
     }
 
@@ -82,19 +71,12 @@ const Navbar = () => {
                         <Image className={`${styles.profileImg} ${styles.img}`} onClick={()=>toggleProfile()} alt="" width={30} height={30} src={data?.session?.user?.image}/>
                     </div>
               )
-              :(< LockOpenIcon onClick={()=>toggleLogin()} className={styles.lock}/>)
+              :(< LockOpenIcon onClick={()=>toggleSignin()} className={styles.lock}/>)
             }
             </div>
           </div>
-        {/* {showMenu=="true"?(
-          <div className={styles.subHeader}>
-              <div className={styles.subHeaderMenu}>
-                  {getLinks()}
-              </div>
-          </div>
-        ):(<></>)} */}
-        {showProfile=="true"&&<Profile toggleProfile={toggleProfile}/>}
-        {showLogin=="true"&&<Signin/>}
+        {topBarState=="profile"&&<Profile/>}
+        {topBarState=="signin"&&<Signin/>}
     </>
   )
 }

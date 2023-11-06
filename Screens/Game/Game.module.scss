@@ -144,22 +144,12 @@
     backdrop-filter: blur(10px);
     border-radius: 8px;
 }
-.topplayer .cardsContainer{
-    position:absolute;
-    width: 400px;
-    height: 100px;
-    max-height: 100px;
-    display: flex;
-    overflow:hidden;
-    flex-wrap: wrap;
-    padding-left: 4px;
-    bottom: 0;
-}
 
-.topplayer .cardsContainer .card,.bottomplayer .cardsContainer .card{
-    // margin-left: -40px;
+
+.topplayer .cardsContainer .card,.bottomplayer .cardsContainer .card, .rightplayer .cardsContainer .card, .leftplayer .cardsContainer .card{
     transition: all 0.5s ease;
 }
+
 .table .bottom{
     position: absolute;
     bottom: 30px;
@@ -190,6 +180,19 @@
     margin-left: 0px !important;
 }
 
+
+.topplayer .cardsContainer{
+    position:absolute;
+    width: 400px;
+    height: 100px;
+    max-height: 100px;
+    display: flex;
+    overflow:hidden;
+    flex-wrap: wrap;
+    padding-left: 4px;
+    bottom: 0;
+}
+
 .bottomplayer .cardsContainer{
     position:absolute;
     width: 400px;
@@ -206,10 +209,11 @@
     width: 100px;
     height: 400px;
     left:0;
-    padding-top: 4px;
     display: flex;
     flex-wrap: wrap;
-    padding-left: 4px;
+    overflow: hidden;
+    padding-top: 53px;
+    flex-direction: column;
     
 }
 

@@ -14,8 +14,9 @@ const Game = () => {
   const [playedCards,setPlayedCards] = useState([])
   const bm = ['400px','35px','161px','95px','41px','14px','-2.1px','-13px','-20.6px','-26.4px','-30.9px','-34.5px','-37.5px','-40px']
   const bp = ['0px','161px','75px','0px','0px','0px','0px','0px','0px','0px','0px','0px','0px','0px']
-  const lm = ['-55px','-55px','-55px','-55px','-55px','-55px','-55px','-55px','-55px','-55px','-55px','-55px','-55px','-55px']
-  const lp = ['14px','14px','14px','14px','14px','14px','14px','14px','14px','14px','14px','14px','14px','14px']
+  const lm = ['-55px','100px','53px','25px','6px','-7px','-15px','-22px','-28px','-35px','-40px','-45px','-50px','-55px']
+  const lp = ['14px','14px','-10px','0px','0px','0px','-20x','-15px','1px','4px','6px','8px','10px','14px']
+  
 
   const returnIndex = (position='current') =>{
     var index = table?.users?.indexOf(id)
@@ -119,7 +120,7 @@ const Game = () => {
   fn();
 }, [table]);
  
-
+console.log(table?.usersData[returnIndex('top')]?.deck?.filter((card)=>card?.played!=true).length)
 
   return (
     <div className={styles.wrapper}>
@@ -134,8 +135,8 @@ const Game = () => {
           <p>{table?.usersData[returnIndex('top')]?.score}</p>
         </div>
         <div className={styles.cardsContainer}>
-          {table?.usersData[returnIndex('top')]?.deck?.map((card, i) => (
-            <div key={i} className={styles.card} style={{marginLeft: '-40px'}}>
+          {table?.usersData[returnIndex('top')]?.deck?.filter((card)=>card?.played!=true).map((card, i, cards) => (
+            <div key={i} className={styles.card} style={{marginLeft: bm[cards.length], paddingLeft: bp[cards?.length] }}>
               <BackCard/>
             </div>
           ))}
@@ -152,8 +153,8 @@ const Game = () => {
           <p>{table?.usersData[returnIndex('right')]?.score}</p>
         </div>
         <div className={styles.cardsContainer}>
-          {table?.usersData[returnIndex('right')]?.deck?.map((card, i) => (
-            <div key={i} className={styles.card}>
+          {table?.usersData[returnIndex('right')]?.deck?.filter((card)=>card?.played!=true).map((card, i,cards) => (
+            <div key={i} className={styles.card} style={{marginTop:lm[cards?.length],paddingTop:lp[cards?.length]}}>
               <BackCard flip={true} />
             </div>
           ))}

@@ -12,7 +12,11 @@ const Play = () => {
         setBet(bet1);
         setStatus('searching');
         setView('searching');
-        await handleStart(bet1,data?.session?.user?.id);
+        if(data?.session?.user?.balance<bet1){
+            alert("You don't have enough balance");
+        }else{
+            await handleStart(bet1,data?.session?.user?.id);
+        }
     }
 
     useEffect(()=>{
