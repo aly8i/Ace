@@ -45,6 +45,7 @@ const Navbar = () => {
     <>
       <div className={styles.header}>
         <div className={styles.logo}>
+            
             <Image src={logo2} alt="" width={70} height={70}/>
         </div>
         <div className={styles.headerMenu}>
